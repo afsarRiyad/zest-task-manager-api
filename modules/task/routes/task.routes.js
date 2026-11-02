@@ -1,14 +1,14 @@
-import taskModel from "../model/taskModel.js";
+import taskModel from "../models/task.model.js";
 import validate from "../../../middleware/validate.js";
 import express from 'express'
-import taskSchema, { updateTaskSchema } from "../schemas/taskSchema.js";
+import taskSchema, { updateTaskSchema } from "../schemas/task.schema.js";
 import AppError from "../../../utils/AppError.js";
 
 const router = express.Router()
 
 // create task route 
 
-router.post('/task', validate(taskSchema), async (req, res)=>{
+router.post('/create/task', validate(taskSchema), async (req, res)=>{
    const {date, time, ...rest} = req.body
    const newTask = await taskModel.create({
        ...rest,
